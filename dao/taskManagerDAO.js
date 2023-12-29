@@ -23,4 +23,22 @@ exports.createTask = function (req, callback) {
     })
 }
 
+exports.getAllTasks = function (req, callback) {
+    let options = {
+        sql: "select * from task_manager;"
+    }
+
+    db.queryWithOptions(options, (dbErr, dbResp) => {
+        if (dbErr) {
+            callback(dbErr, null)
+        } else {
+            if (dbResp && dbResp.length > 0) {
+                callback(null, dbResp)
+            } else {
+                callback(null, null)
+            }
+        }
+    })
+}
+
 

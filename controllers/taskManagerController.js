@@ -16,5 +16,18 @@ exports.createTask = function (req, callback) {
     })
 }
 
+exports.getAllTasks = function (req, callback) {
+    taskManagerDao.getAllTasks(req, (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            if (!result) {
+                callback(null, {'status': "success", "msg": "No tasks found"})
+            } else {
+                callback(null, result)
+            }
+        }
+    })
+}
 
 
