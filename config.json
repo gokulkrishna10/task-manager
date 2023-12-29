@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "RDS_HOST": "localhost",
+    "RDS_USER": "root",
+    "RDS_PASSWORD": "password1234",
+    "RDS_SCHEMA": "new_schema",
+    "RDS_NO_OF_CONNECTIONS": 20,
+    "RDS_FAILOVER_NO_OF_CONNECTIONS": 5,
+    "RDS_CONNECTION_TIMEOUT": 10000,
+    "SERVER_PROTOCOL_WITH_SUBDOMAIN": "localhost:8888/"
+  },
+  "main": {
+    "RDS_HOST": "sql5.freesqldatabase.com",
+    "RDS_USER": "sql5670865",
+    "RDS_PASSWORD": "VxFHPUIQnf",
+    "RDS_SCHEMA": "sql5670865",
+    "RDS_NO_OF_CONNECTIONS": 20,
+    "RDS_FAILOVER_NO_OF_CONNECTIONS": 5,
+    "RDS_CONNECTION_TIMEOUT": 10000,
+    "SERVER_PROTOCOL_WITH_SUBDOMAIN": "tinyurl-fok9.onrender.com/"
+  }
+}
+
