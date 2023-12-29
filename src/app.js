@@ -8,7 +8,7 @@ const express = require("express"),
 
 var ErrorMod = require('../customnodemodules/error_node_module/errors');
 var customError = new ErrorMod();
-const urlValidator = require('../validation/urlValidation')
+const taskValidator = require('../validation/tasksValidation')
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,9 +45,17 @@ router.all("*", function (req, res, next) {
     next();
 });
 
-//routes for url-shortener
-router.post('/shorten-url', urlValidator.validateInputUrl, routes.shortenUrl)
-router.get('/shorturl.co/:token', urlValidator.validateShortUrl, routes.redirectUsingShortUrl)
+//create a task
+router.post('/task', taskValidator.validateCreateTask, routes.createTask)
+
+// get a task
+router.get('/tasks')
+
+// delete a task
+router.delete('/task')
+
+// update a task
+router.put('/task')
 
 
 router.all('/*', function (req, res) {
