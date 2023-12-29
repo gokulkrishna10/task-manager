@@ -48,11 +48,11 @@ router.all("*", function (req, res, next) {
 //create a task
 router.post('/task', taskValidator.validateCreateTask, routes.createTask)
 
-// get a task
-router.get('/tasks')
+// get all tasks
+router.get('/tasks', routes.getAllTasks)
 
 // delete a task
-router.delete('/task')
+router.delete('/task/:task_id')
 
 // update a task
 router.put('/task')
