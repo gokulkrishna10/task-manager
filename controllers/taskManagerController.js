@@ -30,4 +30,17 @@ exports.getAllTasks = function (req, callback) {
     })
 }
 
+exports.deleteTask = function (req, callback) {
+    taskManagerDao.deleteTask(req, (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            if (!result) {
+                callback(null, {'status': "no-action", "msg": `Task with the ID ${req.params.task_id} not found`})
+            } else {
+                callback(null, {'status': "success", "msg": "successfully deleted the task"})
+            }
+        }
+    })
+}
 

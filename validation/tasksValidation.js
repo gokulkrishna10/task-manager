@@ -13,4 +13,14 @@ exports.validateCreateTask = function (req, res, next) {
     next()
 }
 
+exports.validateDeleteTask = function (req, res, next) {
+    let err = null
+
+    if (util.isNull(req.params.task_id) || isNaN(req.params.task_id)) {
+        err = customError.BadRequest("request parameter must be a valid task_id")
+        next(err)
+    }
+    next()
+}
+
 
