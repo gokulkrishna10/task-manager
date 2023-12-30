@@ -52,7 +52,7 @@ router.post('/task', taskValidator.validateCreateTask, routes.createTask)
 router.get('/tasks', routes.getAllTasks)
 
 // delete a task
-router.delete('/task/:task_id')
+router.delete('/task/:task_id', taskValidator.validateDeleteTask, routes.deleteTask)
 
 // update a task
 router.put('/task')
