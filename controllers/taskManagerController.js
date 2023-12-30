@@ -44,3 +44,16 @@ exports.deleteTask = function (req, callback) {
     })
 }
 
+exports.updateTask = function (req, callback) {
+    taskManagerDao.updateTask(req, (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            if (!result) {
+                callback(null, {'status': "no-action", "msg": `No updates made`})
+            } else {
+                callback(null, {'status': "success", "msg": "successfully updated the task"})
+            }
+        }
+    })
+}

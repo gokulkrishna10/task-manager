@@ -55,7 +55,7 @@ router.get('/tasks', routes.getAllTasks)
 router.delete('/task/:task_id', taskValidator.validateDeleteTask, routes.deleteTask)
 
 // update a task
-router.put('/task')
+router.put('/task/:task_id', taskValidator.validateUpdateTask, routes.updateTask)
 
 
 router.all('/*', function (req, res) {
