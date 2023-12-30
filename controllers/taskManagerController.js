@@ -10,7 +10,7 @@ exports.createTask = function (req, callback) {
             if (result) {
                 callback(null, {'status': "success", "msg": "successfully created a task"})
             } else {
-                callback(null, {"status": "unknown", "msg": "task could not be created"})
+                callback(null, {"status": "no-action", "msg": "task could not be created"})
             }
         }
     })
@@ -36,7 +36,7 @@ exports.deleteTask = function (req, callback) {
             callback(err, null)
         } else {
             if (!result) {
-                callback(null, {'status': "no-action", "msg": `Task with the ID ${req.params.task_id} not found`})
+                callback(null, {'status': "no-action", "msg": `Task with task_id ${req.params.task_id} not found`})
             } else {
                 callback(null, {'status': "success", "msg": "successfully deleted the task"})
             }

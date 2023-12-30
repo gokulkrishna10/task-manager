@@ -69,8 +69,8 @@ exports.updateTask = function (req, callback) {
     req.query.status = (req.query.status).toUpperCase()
     let updateTaskObject = taskManagerHelper.updateTaskMapper(req)
     let options = {
-        sql: `update ${constants.db_tables['TASK_MANAGER']} set ?`,
-        values: [updateTaskObject]
+        sql: `update ${constants.db_tables['TASK_MANAGER']} set ? where task_id = ?`,
+        values: [updateTaskObject, req.params.task_id]
     }
 
     db.queryWithOptions(options, (dbErr, dbResp) => {
