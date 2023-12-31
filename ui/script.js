@@ -7,7 +7,7 @@ function createTask() {
     const taskDescription = document.getElementById('taskDescriptionInput').value.trim();
 
     // Define the API endpoint
-    const apiEndpoint = 'http://localhost:8888/task';
+    const apiEndpoint = 'https://task-manager-4xy3.onrender.com/task';
 
     // Set up the request payload
     const payload = {
@@ -45,7 +45,7 @@ function createTask() {
 
 
 function loadTasks() {
-    fetch('http://localhost:8888/tasks')
+    fetch('https://task-manager-4xy3.onrender.com/tasks')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load tasks');
@@ -76,7 +76,7 @@ function loadTasks() {
 
 function deleteTask(taskId) {
     console.log('Deleting task:', taskId);
-    fetch(`http://localhost:8888/task/${taskId}`, {method: 'DELETE'})
+    fetch(`https://task-manager-4xy3.onrender.com/task/${taskId}`, {method: 'DELETE'})
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -112,7 +112,7 @@ function markTaskDone(taskId) {
     }
 
     // Call the backend API to update the task's status
-    fetch(`http://localhost:8888/task/${taskId}?status=${newStatus}`, {
+    fetch(`https://task-manager-4xy3.onrender.com/task/${taskId}?status=${newStatus}`, {
         method: 'PUT'
     })
         .then(response => {
