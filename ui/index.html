@@ -13,8 +13,16 @@
     <!-- Task Creation Form -->
     <div class="task-form">
         <input type="text" id="taskLabelInput" class="input-field" placeholder="Enter task label" required>
-        <textarea id="taskDescriptionInput" class="input-field" placeholder="Enter task description (optional)"></textarea>
+        <textarea id="taskDescriptionInput" class="input-field"
+                  placeholder="Enter task description (optional)"></textarea>
         <button onclick="createTask()" class="btn add-task-btn">Add Task</button>
+    </div>
+    <div class="task-display-area">
+        <!-- Load Tasks Button -->
+        <button onclick="loadTasks()" class="btn load-tasks-btn">Load Tasks</button>
+
+        <!-- Task List -->
+        <ul id="taskList" class="task-list"></ul>
     </div>
 </div>
 

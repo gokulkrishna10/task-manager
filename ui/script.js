@@ -40,6 +40,56 @@ function createTask() {
 }
 
 
+function loadTasks() {
+    fetch('http://localhost:8888/tasks')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load tasks');
+            }
+            return response.json();
+        })
+        .then(tasks => {
+            const taskListElement = document.getElementById('taskList');
+            taskListElement.innerHTML = ''; // Clear the list before adding new tasks
+            tasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task-item';
+                taskItem.id = `task-${task.task_id}`;
+                taskItem.innerHTML = `
+                <div class="task-content">${task.task_label}</div>
+                <button onclick="markTaskDone(${task.task_id})" class="mark-done-btn" title="Mark as done">&#10003;</button>
+                <button onclick="deleteTask(${task.task_id})" class="delete-btn" title="Delete Task">&times;</button>
+            `;
+                taskListElement.appendChild(taskItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Failed to load tasks');
+        });
+}
+
+
+function deleteTask(taskId) {
+    console.log('Deleting task:', taskId);
+    fetch(`http://localhost:8888/task/${taskId}`, {method: 'DELETE'})
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Remove the task from the UI
+            const taskItem = document.getElementById(`task-${taskId}`);
+            if (taskItem) {
+                taskItem.remove();
+                showToast('Task deleted');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting task:', error);
+            showToast('Error deleting task'); // Show error in toast notification
+        });
+}
+
 function showToast(message) {
     // Create toast element
     const toast = document.createElement('div');
@@ -58,3 +108,11 @@ function showToast(message) {
         toast.addEventListener('transitionend', () => toast.remove());
     }, 3000);
 }
+
+function markTaskDone(taskId) {
+    // Implement the API call to mark the task as done
+    console.log('Marking task as done:', taskId);
+    // After successful API call, you may want to change the task appearance, e.g.:
+    // document.querySelector(`#task-${taskId}`).classList.add('completed');
+}
+

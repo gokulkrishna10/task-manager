@@ -39,7 +39,7 @@ router.all("*", function (req, res, next) {
     res.set("Vary", "Origin");
     res.set("Access-Control-Allow-Headers", allow_headers);
     res.set("Access-Control-Allow-Origin", origin);
-    res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
     res.set("Access-Control-Allow-Credentials", "true");
     if ("OPTIONS" === req.method) return res.sendStatus(200);
     next();
