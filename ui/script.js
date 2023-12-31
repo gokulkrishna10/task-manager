@@ -9,7 +9,7 @@ function createTask() {
     // Define the API endpoint
     const apiEndpoint = 'http://localhost:8888/task';
 
-    // Setup the request payload
+    // Set up the request payload
     const payload = {
         label: taskLabel,
         description: taskDescription
