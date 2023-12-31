@@ -1,4 +1,3 @@
-const async = require('async')
 const taskManagerDao = require('../dao/taskManagerDAO')
 
 
