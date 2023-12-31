@@ -1,5 +1,9 @@
 function createTask() {
     const taskLabel = document.getElementById('taskLabelInput').value.trim();
+    if (!taskLabel) {
+        showToast('task label is required');
+        return
+    }
     const taskDescription = document.getElementById('taskDescriptionInput').value.trim();
 
     // Define the API endpoint
