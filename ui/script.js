@@ -90,6 +90,40 @@ function deleteTask(taskId) {
         });
 }
 
+
+function markTaskDone(taskId) {
+    console.log('Marking task as done:', taskId);
+    // Select the task item based on taskId
+    const taskItem = document.getElementById(`task-${taskId}`);
+    const isCompleted = taskItem.classList.contains('COMPLETED');
+
+    // Determine the new status based on whether the task is already marked as completed
+    const newStatus = isCompleted ? 'PENDING' : 'COMPLETED';
+
+    // Update the UI to reflect the change
+    if (isCompleted) {
+        taskItem.classList.remove('COMPLETED');
+    } else {
+        taskItem.classList.add('COMPLETED');
+    }
+
+    // Call the backend API to update the task's status
+    fetch(`http://localhost:8888/task/${taskId}?status=${newStatus}`, {
+        method: 'PUT'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            showToast(`Task marked as ${newStatus}`);
+        })
+        .catch(error => {
+            console.error('Error updating task status:', error);
+            showToast('Error updating task status'); // Show error in toast notification
+        });
+}
+
+
 function showToast(message) {
     // Create toast element
     const toast = document.createElement('div');
@@ -109,10 +143,4 @@ function showToast(message) {
     }, 3000);
 }
 
-function markTaskDone(taskId) {
-    // Implement the API call to mark the task as done
-    console.log('Marking task as done:', taskId);
-    // After successful API call, you may want to change the task appearance, e.g.:
-    // document.querySelector(`#task-${taskId}`).classList.add('completed');
-}
 
